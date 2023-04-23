@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { TodoItem } from "../TodoItem";
 import { TodoActionFooter } from "../ActionFooter";
 import clsx from 'clsx';
@@ -12,6 +12,8 @@ function TodoApp() {
     const [isSelectAll, setIsSelectAll] = useState(false)
     const [isDelete, setIsDelete] = useState(false)
 
+    const [showList, setShowList] = useState([])
+
     const handleAddToDo = () => {
         const checkValue = jobs.find((item) => item.value === job)
         if (job !== "" && !checkValue) {
@@ -23,27 +25,34 @@ function TodoApp() {
         setJob('')
     }
 
+    useEffect(() => {
+        setShowList(jobs)
+    }, [jobs])
+
     const handleShowAll = () => {
-        setJobs(prev => [...prev])
         setActiveButton(1)
+        setShowList(jobs)
     }
 
     const handleShowActive = () => {
-        if (checkList?.length < 1) {
-            setJobs(jobs)
-        } else {
-            let itemActive
-            checkList.map((item) => {
-                itemActive = jobs.filter((value) => value.id !== item.id)
-            })
-            setJobs(itemActive);
-        }
         setActiveButton(2)
+        if (checkList?.length < 1) {
+            setShowList(jobs)
+        }
+        else {
+            const itemActive = jobs?.filter(job => !checkList.includes(job.id));
+            setShowList(itemActive);
+        }
     }
 
     const handleComplete = () => {
-        setJobs(checkList);
         setActiveButton(3)
+        let itemComplete = []
+        checkList.forEach((item) => {
+            const job = jobs.filter(job => job.id === item)
+            itemComplete.push(...job)
+        })
+        setShowList(itemComplete);
     }
 
     const handleSelectAll = () => {
@@ -51,10 +60,8 @@ function TodoApp() {
         const checkListAll = jobs.map((job) => {
             return job.id
         })
-        setIsDelete(true)
         setCheckList(checkListAll)
         if (isSelectAll) {
-            setIsDelete(false)
             setCheckList([]);
         }
     }
@@ -65,9 +72,15 @@ function TodoApp() {
             checkList?.length === jobs?.length
         ) {
             setIsSelectAll(true)
-            setIsDelete(true)
+
         } else {
             setIsSelectAll(false)
+        }
+
+        if (checkList &&
+            checkList?.length > 0) {
+            setIsDelete(true)
+        } else {
             setIsDelete(false)
         }
     }, [checkList, jobs])
@@ -105,6 +118,8 @@ function TodoApp() {
                         setCheckList={setCheckList}
                         isSelectAll={isSelectAll}
                         setIsSelectAll={setIsSelectAll}
+                        showList={showList}
+                        setShowList={setShowList}
                     />
                     <TodoActionFooter
                         jobs={jobs}
@@ -117,6 +132,7 @@ function TodoApp() {
                         isSelectAll={isSelectAll}
                         setJobs={setJobs}
                         setCheckList={setCheckList}
+                        checkList={checkList}
                     />
                 </div>
             </div>

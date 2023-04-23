@@ -7,13 +7,16 @@ export function TodoActionFooter(
         handleShowActive,
         handleComplete,
         isDelete,
-        isSelectAll,
         setJobs,
-        setCheckList }
+        setCheckList,
+        checkList,
+    }
 ) {
     const handleDeleteAll = () => {
         if (isDelete) {
-            setJobs([])
+            const deleteAll = jobs?.filter(job => !checkList.includes(job.id));
+            console.log(deleteAll);
+            setJobs(deleteAll)
             setCheckList([])
         }
     }
@@ -26,7 +29,7 @@ export function TodoActionFooter(
                             before:inset-x-0 before:top-0 before:overflow-hidden">
                     <span className="p-4 text-lg flex justify-between relative z-10 text-gray-500">
                         <span >
-                            <span>{jobs?.length} item left</span>
+                            <span>{jobs?.length - checkList.length} item left</span>
                         </span>
                         <div className="flex gap-x-2">
                             <Button
@@ -46,7 +49,7 @@ export function TodoActionFooter(
                             />
                         </div>
                         <div onClick={() => handleDeleteAll()}
-                            className={`hover:underline cursor-pointer visible  ${isSelectAll ? '' : 'collapse'}`}>Clear completed</div>
+                            className={`hover:underline cursor-pointer visible  ${isDelete ? '' : 'collapse'}`}>Clear completed</div>
                     </span>
                 </div>
             )}
