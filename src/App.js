@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import Home from './pages/Home';
+import TodoApp from './pages/todo-app/TodoApp';
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <TodoApp />
     </div>
   );
 }
