@@ -2,11 +2,12 @@ import { useState } from "react"
 import FileIcon from "~/components/Icon/FileIcon"
 import MergeIcon from "~/components/Icon/MergeIcon"
 import UpLoadIcon from "~/components/Icon/UpLoadIcon"
-import { MergePDF } from "../merge-pdf/MergePDF"
+import { MergePDF } from "../MergPdf"
 import EditIcon from "~/components/Icon/EditIcon"
 import DownLoadIconIcon from "~/components/Icon/DownLoadIcon"
 import ViewIcon from "~/components/Icon/ViewIcon"
 import RestartIcon from "~/components/Icon/RestartIcon"
+import LoGo from "~/components/Icon/LoGo"
 
 export const HomePage = () => {
     const [isMerge, setIsMerge] = useState(false)
@@ -33,8 +34,8 @@ export const HomePage = () => {
                     <p className="text-base">All the tools you’ll need to be more productive and work smarter with documents.</p>
                 </div>
                 <div>
-                    <Image
-                        src={profilePic}
+                    <img
+                        src={''}
                         alt="Picture of the author"
                     />
                 </div>

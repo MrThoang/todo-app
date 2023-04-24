@@ -1,25 +1,22 @@
 import { Button } from '~/components/Button';
 
-export function TodoActionFooter(
-    { jobs,
-        activeButton,
-        handleShowAll,
-        handleShowActive,
-        handleComplete,
-        isDelete,
-        setJobs,
-        setCheckList,
-        checkList,
+export function TodoActionFooter({
+    jobs,
+    setJobs,
+    activeJobCount,
+    completedCount,
+    setNowShowing,
+    nowShowing
+}) {
+    const handleClearComplete = () => {
+        const items = jobs.filter(job => job.completed === false)
+        setJobs(items)
     }
-) {
-    const handleDeleteAll = () => {
-        if (isDelete) {
-            const deleteAll = jobs?.filter(job => !checkList.includes(job.id));
-            console.log(deleteAll);
-            setJobs(deleteAll)
-            setCheckList([])
-        }
+
+    const pluralize = (count, word) => {
+        return count === 1 ? word : word + 's';
     }
+
     return (
         <>
             {jobs?.length > 0 && (
@@ -28,28 +25,28 @@ export function TodoActionFooter(
                             before:shadow-shadowPrimary before:absolute before:h-full
                             before:inset-x-0 before:top-0 before:overflow-hidden">
                     <span className="p-4 text-lg flex justify-between relative z-10 text-gray-500">
-                        <span >
-                            <span>{jobs?.length - checkList.length} item left</span>
+                        <span className='w-[100px] inline-block'>
+                            {activeJobCount} {pluralize(activeJobCount, 'item')} left
                         </span>
                         <div className="flex gap-x-2">
                             <Button
-                                onClick={() => handleShowAll()}
-                                isActive={activeButton === 1 ? true : false}
+                                onClick={() => setNowShowing('all')}
                                 title="All"
+                                isActive={nowShowing === 'all' ? true : false}
                             />
                             <Button
-                                onClick={() => handleShowActive()}
-                                isActive={activeButton === 2 ? true : false}
+                                onClick={() => setNowShowing('active')}
                                 title="Active"
+                                isActive={nowShowing === 'active' ? true : false}
                             />
                             <Button
-                                onClick={() => handleComplete()}
-                                isActive={activeButton === 3 ? true : false}
+                                onClick={() => setNowShowing('completed')}
                                 title="Complete"
+                                isActive={nowShowing === 'completed' ? true : false}
                             />
                         </div>
-                        <div onClick={() => handleDeleteAll()}
-                            className={`hover:underline cursor-pointer visible  ${isDelete ? '' : 'collapse'}`}>Clear completed</div>
+                        <div onClick={() => handleClearComplete()}
+                            className={`hover:underline cursor-pointer visible  ${completedCount > 0 ? '' : 'collapse'}`}>Clear completed</div>
                     </span>
                 </div>
             )}

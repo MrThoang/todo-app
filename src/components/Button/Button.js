@@ -11,7 +11,7 @@ export const Button = ({
   return (
     <button
       className={clsx(`${classNames}
-      font-700 text-lg rounded-lg py-1.5 hover:border-border-color hover:border
+      font-700 text-lg rounded-sm py-1.5 hover:border-border-color hover:border
       leading-4 w-auto px-2 border 
       ${isActive ? 'border-border-color' : 'border-transparent'}`)}
       onClick={onClick}

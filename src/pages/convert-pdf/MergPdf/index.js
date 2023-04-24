@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import clsx from 'clsx';
 import PdfIcon from "~/components/Icon/PdfIcon";
 import DownIcon from "~/components/Icon/DownArrowIcon";
+import MergeIcon from "~/components/Icon/MergeIcon";
 
 export const MergePDF = () => {
     const inputRef = useRef(null);

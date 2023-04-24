@@ -1,69 +1,74 @@
-import { useMemo } from "react";
 import clsx from 'clsx';
+import { useState } from 'react';
 
-export function TodoItem({ jobs, setJobs, checkList, setCheckList, showList, setShowList }) {
+export function TodoItem({ jobs, setJobs, key, todo }) {
+    const [editValue, setEditValue] = useState();
 
     const handleDelete = (itemId) => {
-        const deleteJob = jobs.filter(job => job.id !== itemId)
-        setJobs(deleteJob)
+        const deleteJob = jobs.filter((job) => job.id !== itemId);
+        setJobs(deleteJob);
+    };
+
+    const handleSelect = (itemId) => {
+        const itemSelect = jobs.map((job) => {
+            return job.id !== itemId ? job : { ...job, completed: !job.completed };
+        });
+        setJobs(itemSelect);
+    };
+
+    const handleEdit = (jobItem) => {
+        setEditValue(jobItem);
+    };
+
+    const handleSubmit = () => {
+        const itemEdited = editValue.value.trim()
     }
 
-    const isCheckedItem = useMemo(
-        () => (jobId) => checkList?.find((selected) => selected === jobId),
-        [checkList]
-    )
-
-    const handleSelect = (e, itemId) => {
-        const { checked } = e.target;
-        console.log(itemId);
-        if (!isCheckedItem(itemId)) {
-            setCheckList([...checkList, itemId])
-        }
-        if (!checked) {
-            setCheckList(checkList.filter((value) => value !== itemId))
-        }
-    }
-
-    const handleEdit = (id) => {
-        console.log(checkList.find((item) => item === id));
+    const handleChange = (e) => {
+        const { value } = e.target
+        setEditValue(value)
     }
 
     return (
         <ul className="todo-list">
-            {showList?.map((jobItem, index) =>
-                <li className="flex justify-between pl-2.5 px-5 p-2 border text-2xl"
-                    key={index}
-                >
+            <li
+                className="flex justify-between pl-2.5 px-5 p-2 border text-2xl"
+                key={key}
+                onDoubleClick={() => handleEdit(todo)}
+            >
+                {' '}
+                {!editValue && (
                     <div className="flex items-center flex-1">
                         <input
                             type="checkbox"
-                            onChange={(e) => handleSelect(e, jobItem.id)}
-                            checked={isCheckedItem(jobItem.id)}
+                            onChange={() => handleSelect(todo.id)}
+                            checked={todo.completed}
                             className="mr-4 w-8 h-8 rounded-full appearance-none"
-                            value={jobItem.id}
+                            value={todo.id}
                         />
-                        <div
-                            className="flex-1"
-                            onDoubleClick={() => {
-                                handleEdit(jobItem.id)
-                            }}
-                        >
+                        <div className="flex-1">
                             <p
-                                className={clsx(`${checkList.find((item) => item === jobItem.id ? true : false) ?
-                                    "line-through text-gray-400 transition" : ""}
-                            `)}
+                                className={clsx(`${todo.completed ? 'line-through text-gray-400 transition duration-300' : ''
+                                    }
+                    `)}
                             >
-                                {jobItem.value}
+                                {todo.value}
                             </p>
                         </div>
+                        <span
+                            className="cursor-default text-text-primary-color px-2.5 before:content-['×']"
+                            onClick={() => handleDelete(todo.id)}
+                        ></span>
                     </div>
-                    <span className="cursor-pointer text-text-primary-color"
-                        onClick={() => handleDelete(jobItem.id)}
-                    >
-                        x
-                    </span>
-                </li>
-            )}
+                )}
+                {editValue &&
+                    <input
+                        value={editValue?.value}
+                        onBlur={() => handleSubmit()}
+                        onChange={(e) => handleChange(e)}
+                    />
+                }
+            </li>
         </ul>
-    )
+    );
 }
