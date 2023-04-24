@@ -1,8 +1,9 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-export function TodoItem({ jobs, setJobs, key, todo }) {
+export function TodoItem({ jobs, setJobs, todo }) {
     const [editValue, setEditValue] = useState();
+    const editField = useRef()
 
     const handleDelete = (itemId) => {
         const deleteJob = jobs.filter((job) => job.id !== itemId);
@@ -20,8 +21,20 @@ export function TodoItem({ jobs, setJobs, key, todo }) {
         setEditValue(jobItem);
     };
 
-    const handleSubmit = () => {
-        const itemEdited = editValue.value.trim()
+    const handleSubmit = (e) => {
+        // const itemEdited = editField
+        // if (editField !== '') {
+        //     setEditValue(itemEdited)
+        //     const value = jobs[e.target.id].value = itemEdited
+        //     setJobs(prev => [...prev, value])
+        // }
+        setEditValue('')
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSubmit(e)
+        }
     }
 
     const handleChange = (e) => {
@@ -33,7 +46,7 @@ export function TodoItem({ jobs, setJobs, key, todo }) {
         <ul className="todo-list">
             <li
                 className="flex justify-between pl-2.5 px-5 p-2 border text-2xl"
-                key={key}
+                key={todo.id}
                 onDoubleClick={() => handleEdit(todo)}
             >
                 {' '}
@@ -63,9 +76,13 @@ export function TodoItem({ jobs, setJobs, key, todo }) {
                 )}
                 {editValue &&
                     <input
+                        autoFocus
+                        ref={editField}
                         value={editValue?.value}
-                        onBlur={() => handleSubmit()}
+                        onBlur={(e) => handleSubmit(e)}
                         onChange={(e) => handleChange(e)}
+                        onKeyDown={(e) => handleKeyDown(e)}
+                        className='w-full ml-12'
                     />
                 }
             </li>

@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TodoItem } from "../TodoItem";
 import { TodoActionFooter } from "../ActionFooter";
 import clsx from 'clsx';
 import { v4 as uuidv4 } from 'uuid';
 
-function TodoApp() {
+export function TodoApp() {
     const [job, setJob] = useState('')
     const [jobs, setJobs] = useState([])
     const [nowShowing, setNowShowing] = useState('all')
@@ -49,7 +49,6 @@ function TodoApp() {
     const todoItems = showTodos.map((job) => {
         return (
             <TodoItem
-                key={job.id}
                 todo={job}
                 jobs={jobs}
                 setJobs={setJobs}

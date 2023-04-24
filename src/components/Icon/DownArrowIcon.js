@@ -1,5 +1,3 @@
-import { SvgIconConstituentValues } from './SvgIconConstituentValues.types';
-
 export default function DownIcon(
     props
 ) {
