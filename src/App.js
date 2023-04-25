@@ -5,7 +5,6 @@ import Home from './pages/home/Home';
 import {
   BrowserRouter as Router,
   Route,
-  Navigate,
   Routes
 } from "react-router-dom";
 
@@ -14,9 +13,8 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} >
-            <Route path="/home" element={<Home />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/todo-app" element={<TodoApp />} />
         </Routes>
       </div>
