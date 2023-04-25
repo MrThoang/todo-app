@@ -10,6 +10,7 @@ import RestartIcon from "~/components/Icon/RestartIcon"
 import LoGo from "~/components/Icon/LoGo"
 import { Footer } from "../FooterPdf"
 import banner from "~/assets/images/banner.svg"
+import { NavLink } from "react-router-dom"
 
 export const ConVertPDF = () => {
     const [isMerge, setIsMerge] = useState(false)
@@ -22,6 +23,16 @@ export const ConVertPDF = () => {
                             <LoGo />
                             <p className="font-bold text-4xl ml-5">PDF TOOLS</p>
                         </a>
+                        <NavLink
+                            to="/todo-app"
+                        >
+                            <button
+                                type="button"
+                                className="button bg-slate-500 p-2 rounded-sm text-white"
+                            >
+                                Todo App
+                            </button>
+                        </NavLink>
                         <div>
                             <button type="button"
                                 className="flex items-center rounded-full  bg-gradient-to-r to-cyan-500 from-blue-500 px-7 py-3">
