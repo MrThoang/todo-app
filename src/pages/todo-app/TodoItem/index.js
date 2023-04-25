@@ -17,9 +17,9 @@ export function TodoItem({ jobs, setJobs, todo }) {
         setJobs(itemSelect);
     };
 
-    const handleEdit = (jobItem) => {
-        setEditValue(jobItem);
-    };
+    // const handleEdit = (jobItem) => {
+    //     setEditValue(jobItem);
+    // };
 
     const handleSubmit = (e) => {
         // const itemEdited = editField

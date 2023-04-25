@@ -18,7 +18,7 @@ export const ConVertPDF = () => {
             <div className="px-14">
                 <div className="border-b py-8">
                     <div className="flex justify-between items-center">
-                        <a href="#" className="flex items-center">
+                        <a href="/" className="flex items-center">
                             <LoGo />
                             <p className="font-bold text-4xl ml-5">PDF TOOLS</p>
                         </a>
