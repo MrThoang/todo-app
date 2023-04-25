@@ -9,11 +9,12 @@ import ViewIcon from "~/components/Icon/ViewIcon"
 import RestartIcon from "~/components/Icon/RestartIcon"
 import LoGo from "~/components/Icon/LoGo"
 import { Footer } from "../FooterPdf"
+import banner from "~/assets/images/banner.svg"
 
-export const ConVertPdf = () => {
+export const ConVertPDF = () => {
     const [isMerge, setIsMerge] = useState(false)
     return (
-        <>
+        <div className="h-full ">
             <div className="px-14">
                 <div className="border-b py-8">
                     <div className="flex justify-between items-center">
@@ -36,10 +37,7 @@ export const ConVertPdf = () => {
                         <p className="text-base">All the tools you’ll need to be more productive and work smarter with documents.</p>
                     </div>
                     <div>
-                        <img
-                            src={'../../assets/images/banner.svg'}
-                            alt="Picture of the author"
-                        />
+                        <img src={banner} alt='' />
                     </div>
                 </div>
                 <div className="text-center mt-20">
@@ -94,6 +92,6 @@ export const ConVertPdf = () => {
                 )}
             </div>
             <Footer />
-        </>
+        </div>
     )
 }

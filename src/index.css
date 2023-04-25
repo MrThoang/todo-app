@@ -6,21 +6,3 @@
     font-family: 'customFont';
     src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap');
 }
-
-.toggle-all {
-    width: 60px;
-    height: 34px;
-    font-size: 0;
-    position: absolute;
-    left: 0;
-    top: 162px;
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
-.toggle-all::before {
-    content: '❯';
-    font-size: 22px;
-    color: currentColor;
-    padding: 10px 27px 10px 27px;
-}

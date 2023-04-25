@@ -47,7 +47,7 @@ export function TodoItem({ jobs, setJobs, todo }) {
             <li
                 className="flex justify-between pl-2.5 px-5 p-2 border text-2xl"
                 key={todo.id}
-                onDoubleClick={() => handleEdit(todo)}
+            // onDoubleClick={() => handleEdit(todo)}
             >
                 {' '}
                 {!editValue && (
@@ -56,7 +56,7 @@ export function TodoItem({ jobs, setJobs, todo }) {
                             type="checkbox"
                             onChange={() => handleSelect(todo.id)}
                             checked={todo.completed}
-                            className="mr-4 w-8 h-8 rounded-full appearance-none"
+                            className="mr-4 w-8 h-8 rounded-full z-10"
                             value={todo.id}
                         />
                         <div className="flex-1">

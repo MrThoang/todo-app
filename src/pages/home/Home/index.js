@@ -1,8 +1,10 @@
-import { ConVertPdf } from "~/pages/convert-pdf/ConVertPdf";
+import { ConVertPDF } from "~/pages/convert-pdf/ConVertPdf";
 
 function Home() {
     return (
-        <ConVertPdf />
+        <div className="h-full bg-[url('./assets/images/background.svg')] w-full bg-no-repeat bg-cover bg-bottom">
+            <ConVertPDF />
+        </div>
     );
 }
 

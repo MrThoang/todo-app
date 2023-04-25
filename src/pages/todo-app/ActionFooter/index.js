@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { Button } from '~/components/Button';
 
 export function TodoActionFooter({
@@ -29,21 +30,27 @@ export function TodoActionFooter({
                             {activeJobCount} {pluralize(activeJobCount, 'item')} left
                         </span>
                         <div className="flex gap-x-2">
-                            <Button
-                                onClick={() => setNowShowing('all')}
-                                title="All"
-                                isActive={nowShowing === 'all' ? true : false}
-                            />
-                            <Button
-                                onClick={() => setNowShowing('active')}
-                                title="Active"
-                                isActive={nowShowing === 'active' ? true : false}
-                            />
-                            <Button
-                                onClick={() => setNowShowing('completed')}
-                                title="Complete"
-                                isActive={nowShowing === 'completed' ? true : false}
-                            />
+                            <a href='#/all'>
+                                <Button
+                                    onClick={() => setNowShowing('all')}
+                                    title="All"
+                                    isActive={nowShowing === 'all' ? true : false}
+                                />
+                            </a>
+                            <a href='#/active'>
+                                <Button
+                                    onClick={() => setNowShowing('active')}
+                                    title="Active"
+                                    isActive={nowShowing === 'active' ? true : false}
+                                />
+                            </a>
+                            <a href='#/completed'>
+                                <Button
+                                    onClick={() => setNowShowing('completed')}
+                                    title="Complete"
+                                    isActive={nowShowing === 'completed' ? true : false}
+                                />
+                            </a>
                         </div>
                         <div onClick={() => handleClearComplete()}
                             className={`hover:underline cursor-pointer visible  ${completedCount > 0 ? '' : 'collapse'}`}>Clear completed</div>

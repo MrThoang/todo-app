@@ -1,5 +1,4 @@
 import './App.css';
-import { ConVertPdf } from './pages/convert-pdf/ConVertPdf';
 import TodoApp from './pages/todo-app/TodoApp';
 import Home from './pages/home/Home';
 
@@ -15,9 +14,10 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" exact component={<Home />} />
-          <Route path="/convert-pdf" component={ConVertPdf} />
-          <Route path="/todo-app" component={TodoApp} />
+          <Route path="/" element={<Home />} >
+            <Route path="/home" element={<Home />} />
+          </Route>
+          <Route path="/todo-app" element={<TodoApp />} />
         </Routes>
       </div>
     </Router>
