@@ -23,16 +23,28 @@ export const ConVertPDF = () => {
                             <LoGo />
                             <p className="font-bold text-4xl ml-5">PDF TOOLS</p>
                         </a>
-                        <NavLink
-                            to="/todo-app"
-                        >
-                            <button
-                                type="button"
-                                className="button bg-slate-500 p-2 rounded-sm text-white"
+                        <div className="flex gap-x-4">
+                            <NavLink
+                                to="/todo-app"
                             >
-                                Todo App
-                            </button>
-                        </NavLink>
+                                <button
+                                    type="button"
+                                    className="button bg-slate-500 p-2 rounded-sm text-white"
+                                >
+                                    Todo App
+                                </button>
+                            </NavLink>
+                            <NavLink
+                                to="/todo-app-context"
+                            >
+                                <button
+                                    type="button"
+                                    className="button bg-slate-500 p-2 rounded-sm text-white"
+                                >
+                                    Todo App useContext
+                                </button>
+                            </NavLink>
+                        </div>
                         <div>
                             <button type="button"
                                 className="flex items-center rounded-full  bg-gradient-to-r to-cyan-500 from-blue-500 px-7 py-3">
