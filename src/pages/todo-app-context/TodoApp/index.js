@@ -25,18 +25,13 @@ export function TodoAppContext() {
 
     const handleSelectAll = (e) => {
         const { checked } = e.target
-        console.log(checked);
-        const activeAll = initialState.todos?.map((todo) => {
-            console.log(todo);
-            return { ...todo, completed: checked }
-        })
-        dispatch(actions.setActiveAllTodo(activeAll))
-        console.log(initialState.todos);
+        dispatch(actions.setActiveAllTodo(checked))
     }
 
     const activeJobCount = initialState.todos.reduce((accum, job) => {
         return job.completed ? accum : accum + 1;
     }, 0)
+
 
     const completedCount = initialState.todos.length - activeJobCount;
 
@@ -65,16 +60,14 @@ export function TodoAppContext() {
                 <div>
                     {initialState.todos?.length > 0 && (
                         <>
-                            <label htmlFor="toggle-all"
+                            <label htmlFor="toggle-all-context"
                                 className={clsx(`toggle-all ${activeJobCount ? 'text-[#e6e6e6]' : 'text-[#737373]'}`)}
                             />
                             <input
-                                id="toggle-all"
+                                id="toggle-all-context"
                                 type="checkbox"
                                 className="hidden"
-                                onClick={(e) =>
-                                    handleSelectAll(e)
-                                }
+                                onClick={(e) => handleSelectAll(e)}
                                 checked={activeJobCount === 0}
                             />
                         </>

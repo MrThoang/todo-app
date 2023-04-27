@@ -1,10 +1,8 @@
 import { Button } from '~/components/Button';
 import { useStoreTodo } from '~/hooks';
-import { initialState } from '~/store/reducer';
+import { actions } from '~/store';
 
 export function TodoActionFooter({
-    jobs,
-    setJobs,
     activeJobCount,
     completedCount,
     setNowShowing,
@@ -13,8 +11,7 @@ export function TodoActionFooter({
     const [initialState, dispatch] = useStoreTodo()
 
     const handleClearComplete = () => {
-        const items = jobs.filter(job => job.completed === false)
-        setJobs(items)
+        dispatch(actions.clearTodoComplete())
     }
 
     const pluralize = (count, word) => {
