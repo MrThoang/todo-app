@@ -22,7 +22,6 @@ export function TodoItem({ todo }) {
 
     const handleSubmit = (todoId) => {
         const itemEdited = editField.current.value
-        console.log(todoId);
         if (editField !== '') {
             dispatch(actions.editTodo(todoId, itemEdited))
         }

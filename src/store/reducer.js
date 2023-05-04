@@ -55,9 +55,16 @@ function todoReducer(state, action) {
         todos: newValue
       }
     case EDIT_TODO:
-      // newValue = state.todos.splice(action.key, 1, action.payload);
+      console.log(action.todoId);
       newValue = state.todos.map((todo) => {
-        // return { ...todo, [action.todoId] = action.payload }
+        if (todo.id === action.todoId) {
+          return {
+            id: action.todoId,
+            completed: todo.completed,
+            value: action.payload
+          }
+        }
+        return todo
       })
       return {
         ...state,
