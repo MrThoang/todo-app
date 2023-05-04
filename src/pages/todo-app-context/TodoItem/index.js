@@ -6,7 +6,8 @@ import { actions } from '~/store';
 export function TodoItem({ todo }) {
     const [editValue, setEditValue] = useState();
     const editField = useRef()
-    const [initialState, dispatch] = useStoreTodo()
+    const [initalState, dispatch] = useStoreTodo()
+    console.log(initalState);
 
     const handleDelete = (todoId) => {
         dispatch(actions.deleteTodo(todoId))
