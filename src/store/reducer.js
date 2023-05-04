@@ -55,7 +55,6 @@ function todoReducer(state, action) {
         todos: newValue
       }
     case EDIT_TODO:
-      console.log(action.todoId);
       newValue = state.todos.map((todo) => {
         if (todo.id === action.todoId) {
           return {
