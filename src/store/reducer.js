@@ -60,7 +60,7 @@ function todoReducer(state, action) {
           return {
             id: action.todoId,
             completed: todo.completed,
-            value: action.payload
+            value: action.payload.trim()
           }
         }
         return todo
