@@ -6,14 +6,16 @@ import { actions } from '~/store';
 export function TodoItem({ todo }) {
     const [editValue, setEditValue] = useState();
     const editField = useRef()
-    const [initalState, dispatch] = useStoreTodo()
-    console.log(initalState);
+    const [initialState, dispatch] = useStoreTodo()
+    console.log(initialState);
 
     const handleDelete = (todoId) => {
         dispatch(actions.deleteTodo(todoId))
     };
 
-    const handleSelect = (todoId) => {
+    const handleSelect = (e, todoId) => {
+        e.stopPropagation()
+        console.log(e);
         dispatch(actions.setActiveTodo(todoId))
     };
 
@@ -52,7 +54,7 @@ export function TodoItem({ todo }) {
                     <div className="flex items-center flex-1">
                         <input
                             type="checkbox"
-                            onChange={() => handleSelect(todo.id)}
+                            onChange={(e) => handleSelect(e, todo.id)}
                             checked={todo.completed}
                             className="mr-4 w-8 h-8 rounded-full z-10"
                             value={todo.id}
